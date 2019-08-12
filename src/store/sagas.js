@@ -12,7 +12,7 @@ import axios from 'axios';
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* queryList() {
     try {
-        let listData = yield axios.get('web/v1/topicList');
+        let listData = yield axios.get('web/v1/topicLis');
         const action = getInitializeListData(listData.data);
         console.log(listData);
         yield put(action)

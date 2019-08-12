@@ -4,7 +4,8 @@
  *@Date:Created in  2019/8/7
  *@Modified By:
  */
-import {HANDLE_INPUT_CHANGE,ADD_NEW_LIST,EDIT_LIST,INITIALIZE_LIST} from './actionTypes'
+import {HANDLE_INPUT_CHANGE, ADD_NEW_LIST, EDIT_LIST, INITIALIZE_LIST} from './actionTypes'
+
 const defaultState = {
     inputValue: '',
     list: []
@@ -18,19 +19,21 @@ export default (state = defaultState, action) => {
         newStore.inputValue = action.value;
         return newStore  //这个数据返回给了store,store拿到新数据进行更新数据
     }
-    if(action.type===ADD_NEW_LIST&&state.inputValue){
+
+    if (action.type === ADD_NEW_LIST && state.inputValue) {
         const newStore = JSON.parse(JSON.stringify(state));
         newStore.list.push(newStore.inputValue);
-        newStore.inputValue='';
-        return newStore
-    }
-    if(action.type===EDIT_LIST){
-        const newStore = JSON.parse(JSON.stringify(state));
-        newStore.list.splice(action.editKey,1);
+        newStore.inputValue = '';
         return newStore
     }
 
-    if(action.type===INITIALIZE_LIST){
+    if (action.type === EDIT_LIST) {
+        const newStore = JSON.parse(JSON.stringify(state));
+        newStore.list.splice(action.editKey, 1);
+        return newStore
+    }
+
+    if (action.type === INITIALIZE_LIST) {
         let newStore = action.data;
         return newStore
     }
